@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-''' Unittest for the utils.access_nested_map function
+''' Unittest for the utils.py
 '''
 
 import unittest
