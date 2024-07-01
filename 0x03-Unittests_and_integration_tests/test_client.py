@@ -20,7 +20,8 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_org(self, org_name, mock_get_json):
         test_instance = GithubOrgClient(org_name)
         test_instance.org()
-        mock_get_json.called_with_once(test_instance.ORG_URL.format(org=org_name))
+        mock_get_json.called_with_once(test_instance.ORG_URL
+                                       .format(org=org_name))
 
 
 if __name__ == '__main__':
