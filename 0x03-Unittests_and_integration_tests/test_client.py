@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """ Unittests and integration tests """
 
-import unittest
-from unittest.mock import patch, PropertyMock
-from parameterized import parameterized, parameterized_class
-
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
+from parameterized import parameterized, parameterized_class
+import unittest
+from unittest.mock import patch, PropertyMock
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -73,6 +72,7 @@ class TestGithubOrgClient(unittest.TestCase):
     TEST_PAYLOAD
 )
 class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ Class - Integration test of fixtures """
     @classmethod
     def setUpClass(cls):
         """method called before tests in an individual class are run"""
@@ -86,6 +86,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.mock = cls.get_patcher.start()
 
     def test_public_repos(self):
+        """ Integration test: public repos"""
         test_class = GithubOrgClient("google")
 
         self.assertEqual(test_class.org, self.org_payload)
@@ -95,6 +96,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.mock.assert_called()
 
     def test_public_repos_with_license(self):
+        """ Integration test for public repos with License """
         test_class = GithubOrgClient("google")
 
         self.assertEqual(test_class.public_repos(), self.expected_repos)
@@ -105,4 +107,5 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """method called after tests in an individual class have run"""
         cls.get_patcher.stop()
